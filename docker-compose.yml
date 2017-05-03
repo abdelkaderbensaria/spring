@@ -1,0 +1,16 @@
+mysqldb:
+  container_name: "db"
+  image: mysql:latest
+  environment:
+    MYSQL_DATABASE: hibernatedb
+    MYSQL_USER: hibuser
+    MYSQL_PASSWORD: root
+    MYSQL_ROOT_PASSWORD: root
+mywildfly:
+  image: abdelkader/spring
+  links:
+         mysqldb:db  
+environment:
+    - MYSQL_URI=db:3306
+  ports:
+- 8080:8080
