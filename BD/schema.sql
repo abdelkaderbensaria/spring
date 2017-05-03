@@ -10,7 +10,6 @@ USE hibnatedb;
 
 CREATE TABLE IF NOT EXISTS teams (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30),
-  
+  name VARCHAR(30)
 ) engine=InnoDB;
 

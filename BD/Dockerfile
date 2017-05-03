@@ -7,7 +7,7 @@ ENV MYSQL_PASSWORD root
 
 # copy over the script that creates my tables and populates them
 copy schema.sql tmp/
-copy privilges.sql rmp/
+copy privileges.sql rmp/
 
 # one line that took me hours to figure out
 ONBUILD run mysql -uroot -p root hibernatedb < tmp/schema.sql && \

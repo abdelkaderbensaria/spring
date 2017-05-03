@@ -1,16 +1,18 @@
-mysqldb:
-  container_name: "db"
-  image: mysql:latest
-  environment:
-    MYSQL_DATABASE: hibernatedb
-    MYSQL_USER: hibuser
-    MYSQL_PASSWORD: root
-    MYSQL_ROOT_PASSWORD: root
-mywildfly:
+web:
   image: abdelkader/spring
-  links:
-         mysqldb:db  
-environment:
-    - MYSQL_URI=db:3306
   ports:
-- 8080:8080
+    - "8081:8080"
+    - "9990:9990"
+
+  volumes:
+    - /opt/DockerFiles/Compose/Wildfly/DeployedWars:/opt/jboss/wildfly/standalone/deployments/
+  links:
+    - db
+  environment:
+    - DEBUG=true
+db:
+  # this allowed the building of the custom configuration I created above
+  # which resides in a 'MySql' subdirectory
+  build: BD 
+  # exposes the port to the shared appliance, but not to the outside world
+  
